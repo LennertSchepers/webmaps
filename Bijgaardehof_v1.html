@@ -61,6 +61,16 @@
                 map.getCanvas().style.cursor = '';
             });
         });
+
+        // Add geolocate control to the map.
+        map.addControl(
+            new maplibregl.GeolocateControl({
+                positionOptions: {
+                    enableHighAccuracy: true
+                },
+                trackUserLocation: true
+            })
+        );
     </script>
     
 </body>
