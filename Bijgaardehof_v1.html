@@ -379,12 +379,12 @@
         });
 
         // Change the cursor to a pointer when the mouse is over the states layer.
-        map.on('mouseenter', 'states-layer', () => {
+        map.on('mouseenter', 'bijgaardehof_poly', () => {
             map.getCanvas().style.cursor = 'pointer';
         });
 
         // Change it back to a pointer when it leaves.
-        map.on('mouseleave', 'states-layer', () => {
+        map.on('mouseleave', 'bijgaardehof_poly', () => {
             map.getCanvas().style.cursor = '';
         });
 
