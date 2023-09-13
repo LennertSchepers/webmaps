@@ -36,17 +36,6 @@
                 'data': 'https://raw.githubusercontent.com/LennertSchepers/webmaps/main/assets/steps.geojson',
             });
 
-            // Convert LineString coordinates to Point features
-            const pointStairs = lineStringData.geometry.coordinates.map(coord => {
-                return {
-                    type: 'Feature',
-                    geometry: {
-                        type: 'Point',
-                        coordinates: coord,
-                    },
-                };
-            });
-
             map.addLayer({
                 'id': 'bijgaardehof_poly',
                 'type': 'fill',
@@ -69,13 +58,7 @@
             map.addLayer({
                 'id': 'steps-layer',
                 'type': 'symbol',
-                'source': {
-                    'type': 'geojson',
-                    'data': {
-                        'type': 'FeatureCollection',
-                        'features': 'pointStairs',
-                    },
-                },
+                'source': 'steps',
                 'layout': {
                     'icon-image': 'steps-icon', // Specify the custom icon image
                     'icon-size': 0.5, // Adjust the icon size as needed
