@@ -1,6 +1,6 @@
 {
   "type": "FeatureCollection",
-  "generator": "overpass-ide",
+  "generator": "overpass-ide, but LineStrings simplified to first Point",
   "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
   "timestamp": "2023-09-13T19:38:29Z",
   "features": [
@@ -16,33 +16,11 @@
         "surface": "concrete"
       },
       "geometry": {
-        "type": "LineString",
+        "type": "Point",
         "coordinates": [
-          [
             3.7414575,
             51.0539124
-          ],
-          [
-            3.7414983,
-            51.0539332
-          ],
-          [
-            3.7415895,
-            51.053932
-          ],
-          [
-            3.741648,
-            51.0539129
-          ],
-          [
-            3.7417017,
-            51.0538712
-          ],
-          [
-            3.7417473,
-            51.0538038
           ]
-        ]
       },
       "id": "way/675487353"
     },
@@ -60,17 +38,11 @@
         "surface": "concrete"
       },
       "geometry": {
-        "type": "LineString",
+        "type": "Point",
         "coordinates": [
-          [
             3.7408664,
             51.0539146
-          ],
-          [
-            3.7408845,
-            51.0538227
           ]
-        ]
       },
       "id": "way/686060608"
     },
@@ -85,17 +57,11 @@
         "wikidata": "Q115808318"
       },
       "geometry": {
-        "type": "LineString",
+        "type": "Point",
         "coordinates": [
-          [
             3.7423513,
             51.0524319
-          ],
-          [
-            3.7424632,
-            51.0523068
           ]
-        ]
       },
       "id": "way/1022598120"
     },
@@ -107,17 +73,11 @@
         "highway": "steps"
       },
       "geometry": {
-        "type": "LineString",
+        "type": "Point",
         "coordinates": [
-          [
             3.7436688,
             51.0526161
-          ],
-          [
-            3.7434393,
-            51.0525356
           ]
-        ]
       },
       "id": "way/1117175112"
     }
