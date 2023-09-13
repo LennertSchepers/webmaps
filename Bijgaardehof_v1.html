@@ -30,11 +30,23 @@
                 'data': 'https://raw.githubusercontent.com/LennertSchepers/webmaps/main/assets/bijgaardehof.geojson',
             });
             
-
+            // add stairs from overpass turbo, but these are linestrings!
             map.addSource('steps', { // openstreetmap data: https://overpass-turbo.eu/s/1Ap0
                 'type': 'geojson',
                 'data': 'https://raw.githubusercontent.com/LennertSchepers/webmaps/main/assets/steps.geojson',
             });
+
+            // Convert LineString coordinates to Point features
+            const pointStairs = lineStringData.geometry.coordinates.map(coord => {
+                return {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: coord,
+                    },
+                };
+            });
+
 
             map.addLayer({
                 'id': 'bijgaardehof_poly',
@@ -56,15 +68,20 @@
 
             // Add a layer for the stairs with custom icon
             map.addLayer({
-                id: 'steps-layer',
-                type: 'symbol',
-                source: 'steps',
-                layout: {
+                'id': 'steps-layer',
+                'type': 'symbol',
+                'source': {
+                    'type': 'geojson',
+                    'data': {
+                        'type': 'FeatureCollection',
+                        'features': 'pointStairs',
+                    },
+                'layout': {
                     'icon-image': 'steps-icon', // Specify the custom icon image
                     'icon-size': 0.5, // Adjust the icon size as needed
                     'icon-allow-overlap': true,
                 },
-                paint: {
+                'paint': {
                     'icon-opacity': [
                         'case',
                         ['>=', ['get', 'zoom'], 17], 1, // Show the icon at zoom level 17 or higher
