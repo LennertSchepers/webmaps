@@ -47,7 +47,6 @@
                 };
             });
 
-
             map.addLayer({
                 'id': 'bijgaardehof_poly',
                 'type': 'fill',
@@ -63,7 +62,7 @@
                         'gray', // (optional) Default color for other polygons
                     ],
                     'fill-opacity': 0.5
-                }
+                },
             });
 
             // Add a layer for the stairs with custom icon
@@ -76,6 +75,7 @@
                         'type': 'FeatureCollection',
                         'features': 'pointStairs',
                     },
+                },
                 'layout': {
                     'icon-image': 'steps-icon', // Specify the custom icon image
                     'icon-size': 0.5, // Adjust the icon size as needed
@@ -88,8 +88,8 @@
                         0, // Hide the icon at lower zoom levels
                     ],
                 },
-            }
-        });
+            });
+        
 
             // Add a custom stairs icon to the map
             map.loadImage('https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Stairs_-_The_Noun_Project.svg/289px-Stairs_-_The_Noun_Project.svg.png', function (error, image) {
