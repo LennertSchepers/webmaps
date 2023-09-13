@@ -37,6 +37,14 @@
                 'layout': {},
                 'paint': {
                     'fill-color': '#257df1',
+                    'fill-color': [
+                        'match',
+                        ['get', 'name'],
+                        'Wijgaard', '#257df1', // Color for Wijgaard
+                        'De Spore', '#fbd800',  // Color for De Spore
+                        'Biotope', '#ff512f', // color for Biotope
+                        'green', // (optional) Default color for other polygons
+                    ]
                     'fill-outline-color': '#13417c',
                     'fill-opacity': 0.5
                 }
@@ -45,9 +53,14 @@
             // When a click event occurs on a feature in the states layer, open a popup at the
             // location of the click, with description HTML from its properties.
             map.on('click', 'bijgaardehof_poly', (e) => {
-                new maplibregl.Popup()
+                const properties = e.features[0].properties;
+                const popup = new maplibregl.Popup()
                     .setLngLat(e.lngLat)
-                    .setHTML(e.features[0].properties.name)
+                    .setHTML(`
+                        <h3>${properties.name}</h3>
+                        <p>${properties['addr:street']} ${properties['addr:housenumber']}</p>
+                        <p>${properties['addr:postcode']} ${properties['addr:city']}</p>
+                    `)
                     .addTo(map);
             });
 
