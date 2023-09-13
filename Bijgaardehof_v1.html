@@ -13,7 +13,7 @@
     </style>
 </head>
 <body>
-     <!--using this overpass query: https://overpass-turbo.eu/s/1Ajy-->
+
     <div id="map"></div>
     <script>
         const map = new maplibregl.Map({
@@ -25,11 +25,17 @@
         });
     
         map.on('load', () => {
-            map.addSource('bijgaardehof', {
+            map.addSource('bijgaardehof', { // openstreetmap data: https://overpass-turbo.eu/s/1Ajy
                 'type': 'geojson',
-                'data': 'https://api.maptiler.com/data/a5784d23-e628-4030-acc7-53e073edb897/features.json?key=q9jsraJykUxXlm5asmvR'
-            
+                'data': 'https://raw.githubusercontent.com/LennertSchepers/webmaps/main/assets/bijgaardehof.geojson',
             });
+            
+
+            map.addSource('steps', { // openstreetmap data: https://overpass-turbo.eu/s/1Ap0
+                'type': 'geojson',
+                'data': 'https://raw.githubusercontent.com/LennertSchepers/webmaps/main/assets/steps.geojson',
+            });
+
             map.addLayer({
                 'id': 'bijgaardehof_poly',
                 'type': 'fill',
@@ -46,6 +52,31 @@
                     ],
                     'fill-opacity': 0.5
                 }
+            });
+
+            // Add a layer for the stairs with custom icon
+            map.addLayer({
+                id: 'steps-layer',
+                type: 'symbol',
+                source: 'steps',
+                layout: {
+                    'icon-image': 'steps-icon', // Specify the custom icon image
+                    'icon-size': 0.5, // Adjust the icon size as needed
+                    'icon-allow-overlap': true,
+                },
+                paint: {
+                    'icon-opacity': [
+                        'case',
+                        ['>=', ['get', 'zoom'], 17], 1, // Show the icon at zoom level 17 or higher
+                        0, // Hide the icon at lower zoom levels
+                    ],
+                },
+            });
+
+            // Add a custom stairs icon to the map
+            map.loadImage('https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Stairs_-_The_Noun_Project.svg/289px-Stairs_-_The_Noun_Project.svg.png', function (error, image) {
+                if (error) throw error;
+                map.addImage('stairs-icon', image);
             });
 
             // When a click event occurs on a feature in the states layer, open a popup at the
