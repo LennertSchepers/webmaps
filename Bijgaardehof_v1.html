@@ -30,10 +30,16 @@
                 'data': 'https://raw.githubusercontent.com/LennertSchepers/webmaps/main/assets/bijgaardehof.geojson',
             });
             
-            // add stairs from overpass turbo, but these are linestrings!
+            // add stairs from overpass turbo, but converted to points!
             map.addSource('steps', { // openstreetmap data: https://overpass-turbo.eu/s/1Ap0
                 'type': 'geojson',
                 'data': 'https://raw.githubusercontent.com/LennertSchepers/webmaps/main/assets/steps.geojson',
+            });
+
+            // add stairs from overpass turbo, but these are linestrings!
+            map.addSource('parking', { // openstreetmap data: https://overpass-turbo.eu/s/1Apo
+                'type': 'geojson',
+                'data': 'https://raw.githubusercontent.com/LennertSchepers/webmaps/main/assets/parking.geojson',
             });
 
             map.addLayer({
@@ -80,7 +86,7 @@
                 map.addImage('steps-icon', image);
             });
 
-            // When a click event occurs on a feature in the states layer, open a popup at the
+            // When a click event occurs on a feature in the bijgaardehof layer, open a popup at the
             // location of the click, with description HTML from its properties.
             map.on('click', 'bijgaardehof_poly', (e) => {
                 const properties = e.features[0].properties;
@@ -94,7 +100,7 @@
                     .addTo(map);
             });
 
-            // Change the cursor to a pointer when the mouse is over the states layer.
+            // Change the cursor to a pointer when the mouse is over the bijgaardehof layer.
             map.on('mouseenter', 'bijgaardehof_poly', () => {
                 map.getCanvas().style.cursor = 'pointer';
             });
@@ -103,6 +109,63 @@
             map.on('mouseleave', 'bijgaardehof_poly', () => {
                 map.getCanvas().style.cursor = '';
             });
+
+            map.addLayer({
+                'id': 'parking_layer',
+                'type': 'fill',
+                'source': 'parking',
+                'layout': {},
+                'paint': {
+                    'fill-color': '#dbe2d9',
+                    'fill-opacity': 0.5
+                },
+            });
+
+            // When a click event occurs on a feature in the parking layer, open a popup at the
+            // location of the click, with description HTML from its properties.
+            map.on('click', 'parking_layer', (e) => {
+                const properties = e.features[0].properties;
+                const popup = new maplibregl.Popup()
+                    .setLngLat(e.lngLat)
+                    .setHTML(`
+                        <h3>Parking - tarief</h3>
+                        <table class="table">
+                                <tr>
+                                    <th></th>
+                                    <th>Winkels open</th>
+                                    <th>Winkels gesloten</th>
+                                </tr>
+                                <tr>
+                                    <td>gratis</td>
+                                    <td>2 h</td>
+                                    <td>30 min</td>
+                                </tr>
+                                <tr>
+                                    <td>3h</td>
+                                    <td>€?</td>
+                                    <td>€?</td>
+                                </tr>
+                                <tr>
+                                    <td>betaal hier</td>
+                                    <td>betaal hier</td>
+                                    <td>betaal hier</td>
+                                </tr>
+                            </table>
+                    `)
+                    .addTo(map);
+            });
+
+            // Change the cursor to a pointer when the mouse is over the bijgaardehof layer.
+            map.on('mouseenter', 'parking_layer', () => {
+                map.getCanvas().style.cursor = 'pointer';
+            });
+
+            // Change it back to a pointer when it leaves.
+            map.on('mouseleave', 'parking_layer', () => {
+                map.getCanvas().style.cursor = '';
+            });
+
+
         });
 
         // Add geolocate control to the map.
