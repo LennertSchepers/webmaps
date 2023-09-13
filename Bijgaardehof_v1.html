@@ -121,6 +121,17 @@
                 },
             });
 
+            map.addLayer({
+                'id': 'parking_layer_outline',
+                'type': 'line',
+                'source': 'parking',
+                'layout': {},
+                'paint': {
+                    'line-color': '#257df1',
+                    'line-width': 2
+                },
+            });
+
             // When a click event occurs on a feature in the parking layer, open a popup at the
             // location of the click, with description HTML from its properties.
             map.on('click', 'parking_layer', (e) => {
@@ -146,7 +157,7 @@
                                     <td>€?</td>
                                 </tr>
                                 <tr>
-                                    <td>betaal hier</td>
+                                    <td></td>
                                     <td>betaal hier</td>
                                     <td>betaal hier</td>
                                 </tr>
