@@ -14,7 +14,7 @@
         "addr:street": "Deborah Lambillottepad",
         "building": "apartments",
         "building:levels": "7",
-        "height": "24",
+        "height": 24,
         "name": "Biotope"
       },
       "geometry": {
@@ -113,7 +113,7 @@
         "building": "apartments",
         "building:flats": "25",
         "building:levels": "8",
-        "height": "27",
+        "height": 27,
         "name": "Wijgaard"
       },
       "geometry": {
@@ -223,7 +223,7 @@
         "addr:street": "Eliane Vogel-Polskypad",
         "building": "apartments",
         "building:levels": "5",
-        "height": "18",
+        "height": 18,
         "name": "De Spore"
       },
       "geometry": {
