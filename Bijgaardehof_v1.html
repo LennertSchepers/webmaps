@@ -10,6 +10,13 @@
     <style>
         body { margin: 0; padding: 0; }
         html, body, #map { height: 100%; }
+        table,
+        th,
+        td {
+        padding: 10px;
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
     </style>
 </head>
 <body>
@@ -190,7 +197,7 @@
                                 </tr>
                             </table>
                         <p> <a href="https://car.webhost.skidata.com/sdpay/core/lp/APT.FAC.0513259/00" target="_blank"> Betaal hier mobiel </a></p>
-                        <p> <a href="geo:51.0533,3.7422" target="_blank">Route naar hier</a></p>
+                        <p> <a href="geo:51.0533,3.7422?q=51.0533,3.7422" target="_blank">Route naar hier</a></p>
                     `)
                     .addTo(map);
             });
