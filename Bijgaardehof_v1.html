@@ -155,29 +155,42 @@
                 const popup = new maplibregl.Popup()
                     .setLngLat(e.lngLat)
                     .setHTML(`
-                        <h3>Parking - tarief</h3>
+                        <h3>Parking</h3>
+                        <p>Parking met slagboomherkenning. Rij binnen en betaal bij het buitenrijden mobiel of met je kaart aan de slagboom.</p>
                         <table class="table">
                                 <tr>
-                                    <th></th>
                                     <th>Winkels open</th>
-                                    <th>Winkels gesloten</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <td>2h</td>
+                                    <td>3h</td>
+                                    <td>+1h</td>
                                 </tr>
                                 <tr>
                                     <td>gratis</td>
-                                    <td>2 h</td>
-                                    <td>30 min</td>
+                                    <td>€6</td>
+                                    <td>€2</td>
                                 </tr>
                                 <tr>
-                                    <td>3h</td>
-                                    <td>€?</td>
-                                    <td>€?</td>
+                                    <th>Winkels gesloten</th>
+                                    <th></th>
+                                    <th></th>
                                 </tr>
                                 <tr>
-                                    <td></td>
-                                    <td>betaal hier</td>
-                                    <td>betaal hier</td>
+                                    <td>30min</td>
+                                    <td>1h</td>
+                                    <td>+1h</td>
+                                </tr>
+                                <tr>
+                                    <td>gratis</td>
+                                    <td>€1</td>
+                                    <td>€1</td>
                                 </tr>
                             </table>
+                        <p> <a href="https://car.webhost.skidata.com/sdpay/core/lp/APT.FAC.0513259/00" target="_blank"> Betaal hier mobiel </a></p>
+                        <p> <a href="geo:51.0533,3.7422" target="_blank">Route naar hier</a></p>
                     `)
                     .addTo(map);
             });
