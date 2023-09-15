@@ -114,19 +114,13 @@
                 'type': 'symbol',
                 'source': 'entrances',
                 'layout': {
-                    'icon-image': [
-                        'match',
-                        ['get', 'icon'],
-                        'ingang-wij', 'ingang-wij-icon', // entrance icon Wijgaard
-                        'ingang-wgc', 'ingang-wgc-icon',  // entrance icon WGC
-                        'ingang-spo', 'ingang-spo-icon', // entrance icon De Spore
-                        'ingang-bio', 'ingang-bio-icon', // entrance icon Biotope
-                    ],
+                    'icon-image': 'ingang-wij-icon', // entrance icon Wijgaard
                     'icon-rotation-alignment' : 'map',
                     'icon-size' : 0.075,
                     'icon-allow-overlap': true,
                 },
                 'minzoom' : 16,
+                'filter': ['==', 'icon', 'ingang-wij']
             });
                 
             // Add a custom stairs icon to the map
