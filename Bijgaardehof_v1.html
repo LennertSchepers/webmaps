@@ -114,17 +114,16 @@
                 'type': 'symbol',
                 'source': 'entrances',
                 'layout': {
-                    'icon-image': 'ingang-wij-icon',
-                  //[
-                   //     'match',
-                   //     ['get', 'icon'],
-                   //     'ingang-wij', 'ingang-wij-icon', // entrance icon Wijgaard
-                   //     'ingang-wgc', 'ingang-wgc-icon',  // entrance icon WGC
-                   //     'ingang-spo', 'ingang-spo-icon', // entrance icon De Spore
-                   //   'ingang-bio', 'ingang-bio-icon', // entrance icon Biotope
-                   // ],
+                    'icon-image': [
+                        'match',
+                        ['get', 'icon'],
+                        'ingang-wij', 'ingang-wij-icon', // entrance icon Wijgaard
+                        'ingang-wgc', 'ingang-wgc-icon',  // entrance icon WGC
+                        'ingang-spo', 'ingang-spo-icon', // entrance icon De Spore
+                        'ingang-bio', 'ingang-bio-icon', // entrance icon Biotope
+                    ],
                     'icon-rotation-alignment' : 'map',
-                    'icon-size' : 0.05,
+                    'icon-size' : 0.075,
                     'icon-allow-overlap': true,
                 },
                 'minzoom' : 16,
