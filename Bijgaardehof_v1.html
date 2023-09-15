@@ -26,7 +26,7 @@
         const map = new maplibregl.Map({
             container: 'map',
             style:
-            'https://api.maptiler.com/maps/streets/style.json?key=t8hoqtZWMJsa4gQbDsxJ',
+            'https://api.maptiler.com/maps/bright-v2/style.json?key=t8hoqtZWMJsa4gQbDsxJ',
             center: [3.7432, 51.0522],
             zoom: 17
         });
@@ -47,6 +47,12 @@
             map.addSource('parking', { // openstreetmap data: https://overpass-turbo.eu/s/1Apo
                 'type': 'geojson',
                 'data': 'https://raw.githubusercontent.com/LennertSchepers/webmaps/main/assets/parking.geojson',
+            });
+
+            // add location of entrances
+            map.addSource('entrances', {
+                'type': 'geojson',
+                'data': 'https://raw.githubusercontent.com/LennertSchepers/webmaps/main/assets/ingangen.geojson',
             });
 
             map.addLayer({
@@ -99,14 +105,54 @@
                     'icon-size': 0.075, // Adjust the icon size as needed
                     'icon-allow-overlap': true,
                 },
-                'minzoom': 17,
+                'minzoom': 16,
             });
-        
 
+            // Add entrance symbols (different icons for different entrances)
+            map.addLayer({
+                'id': 'entrance-layer',
+                'type': 'symbol',
+                'source': 'entrances',
+                'layout': {
+                    'icon-image': [
+                        'match',
+                        ['get', 'icon'],
+                        'ingang-wij', 'ingang-wij-icon', // entarnce icon Wijgaard
+                        'ingang-wgc', 'ingang-wgc-icon',  // entrance icon WGC
+                        'ingang-spo', 'ingang-spo-icon', // entrance icon De Spore
+                        'ingang-bio', 'ingang-bio-icon', // entrance icon Biotope
+                    ],
+                    'icon-rotation-alignment' : 'map',
+                },
+                'minzoom' : 16,
+            });
+                
             // Add a custom stairs icon to the map
             map.loadImage('https://raw.githubusercontent.com/LennertSchepers/webmaps/a32723bb1e945e49be6a5655bb9dde220cf53f5f/assets/stairs.png', function (error, image) {
                 if (error) throw error;
                 map.addImage('steps-icon', image);
+            });
+
+            // Add a custom entrance icons to the map
+            // Wij
+            map.loadImage('https://raw.githubusercontent.com/LennertSchepers/webmaps/main/assets/ingang_wij.png', function (error, image) {
+                if (error) throw error;
+                map.addImage('ingang-wij-icon', image);
+            });
+            // WGC
+            map.loadImage('https://raw.githubusercontent.com/LennertSchepers/webmaps/main/assets/ingang_wgc.png', function (error, image) {
+                if (error) throw error;
+                map.addImage('ingang-wgc-icon', image);
+            });
+            // De Spore
+                        map.loadImage('https://raw.githubusercontent.com/LennertSchepers/webmaps/main/assets/ingang_spo.png', function (error, image) {
+                if (error) throw error;
+                map.addImage('ingang-spo-icon', image);
+            });
+            // Biotope
+                        map.loadImage('https://raw.githubusercontent.com/LennertSchepers/webmaps/main/assets/ingang_bio.png', function (error, image) {
+                if (error) throw error;
+                map.addImage('ingang-bio-icon', image);
             });
 
             // When a click event occurs on a feature in the bijgaardehof layer, open a popup at the
@@ -166,8 +212,7 @@
                         <p>Parking met slagbomen en automatische nummerplaatherkenning. Rij binnen en betaal bij het buitenrijden mobiel of met je kaart aan de slagboom.</p>
                         <table class="table">
                                 <tr>
-                                    <th>Winkels open (8:30 - 19:30)</th>
-                        
+                                    <th colspan="3">Winkels open (8:30 - 19:30)</th>
                                 </tr>
                                 <tr>
                                     <td>2h</td>
@@ -180,7 +225,7 @@
                                     <td>€2</td>
                                 </tr>
                                 <tr>
-                                    <th>Winkels gesloten (19:30 - 8:30) </th>
+                                    <th colspan="3">Winkels gesloten (19:30 - 8:30) </th>
                                 </tr>
                                 <tr>
                                     <td>30min</td>
