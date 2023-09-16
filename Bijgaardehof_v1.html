@@ -55,6 +55,14 @@
                 'data': 'https://raw.githubusercontent.com/LennertSchepers/webmaps/main/assets/ingangen.geojson',
             });
 
+            // Load icon images for each icon property
+            const icons = ['ingang_wij', 'ingang_wgc', 'ingang_spo', 'ingang_bio'];
+            icons.forEach(icon => {
+                map.loadImage(`https://raw.githubusercontent.com/LennertSchepers/webmaps/main/assets/${icon}.png`, function (error, image) {
+                    if (error) throw error;
+                    map.addImage(icon, image);
+                });
+            });
             map.addLayer({
                 'id': 'bijgaardehof_poly',
                 'type': 'fill-extrusion',
@@ -110,45 +118,22 @@
 
             // Add entrance symbols (different icons for different entrances)
             map.addLayer({
-                'id': 'entrance-layer',
-                'type': 'symbol',
-                'source': 'entrances',
-                'layout': {
-                    'icon-image': 'ingang-wij-icon', // entrance icon Wijgaard
+                id: 'entrance-layer',
+                type: 'symbol',
+                source: 'entrances',
+                layout: {
+                    'icon-image': ['get', 'icon'], // Use the icon property for each feature
+                    'icon-size': 0.075,
                     'icon-rotation-alignment' : 'map',
-                    'icon-size' : 0.075,
                     'icon-allow-overlap': true,
                 },
-                'minzoom' : 16,
-                'filter': ['==', 'icon', 'ingang-wij'],
+                minzoom: 16,
             });
                 
             // Add a custom stairs icon to the map
             map.loadImage('https://raw.githubusercontent.com/LennertSchepers/webmaps/a32723bb1e945e49be6a5655bb9dde220cf53f5f/assets/stairs.png', function (error, image) {
                 if (error) throw error;
                 map.addImage('steps-icon', image);
-            });
-
-            // Add a custom entrance icons to the map
-            // Wij
-            map.loadImage('https://raw.githubusercontent.com/LennertSchepers/webmaps/812c7964df58e79451a8bc1fa698bd22b6441100/assets/ingang_wij.png', function (error, image) {
-                if (error) throw error;
-                map.addImage('ingang-wij-icon', image);
-            });
-            // WGC
-            map.loadImage('https://raw.githubusercontent.com/LennertSchepers/webmaps/8f829c73054898ffbd04363cc7a01ce6dab54752/assets/ingang_wgc.png', function (error, image) {
-                if (error) throw error;
-                map.addImage('ingang-wgc-icon', image);
-            });
-            // De Spore
-            map.loadImage('https://raw.githubusercontent.com/LennertSchepers/webmaps/812c7964df58e79451a8bc1fa698bd22b6441100/assets/ingang_spo.png', function (error, image) {
-                if (error) throw error;
-                map.addImage('ingang-spo-icon', image);
-            });
-            // Biotope
-            map.loadImage('https://raw.githubusercontent.com/LennertSchepers/webmaps/812c7964df58e79451a8bc1fa698bd22b6441100/assets/ingang_bio.png', function (error, image) {
-                if (error) throw error;
-                map.addImage('ingang-bio-icon', image);
             });
 
             // When a click event occurs on a feature in the bijgaardehof layer, open a popup at the
