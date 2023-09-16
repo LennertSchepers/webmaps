@@ -5,7 +5,7 @@
       "type": "Feature",
       "properties": {
         "icon": "ingang_wij",
-        "description": "ingang Wijgaard"
+        "description": "Wijgaard"
       },
       "geometry": {
         "coordinates": [
@@ -19,7 +19,7 @@
       "type": "Feature",
       "properties": {
         "icon": "ingang_wgc",
-        "description": "ingang WGC"
+        "description": "WGC"
       },
       "geometry": {
         "coordinates": [
@@ -33,7 +33,7 @@
       "type": "Feature",
       "properties": {
         "icon": "ingang_spo",
-        "description": "ingang De Spore"
+        "description": "De Spore"
       },
       "geometry": {
         "coordinates": [
@@ -47,7 +47,7 @@
       "type": "Feature",
       "properties": {
         "icon": "ingang_bio",
-        "description": "ingang Biotope"
+        "description": "Biotope"
       },
       "geometry": {
         "coordinates": [
