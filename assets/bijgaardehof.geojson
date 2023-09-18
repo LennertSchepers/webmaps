@@ -218,7 +218,7 @@
       "properties": {
         "@id": "way/920176285",
         "addr:city": "Gent",
-        "addr:housenumber": "1",
+        "addr:housenumber": "2",
         "addr:postcode": "9000",
         "addr:street": "Eliane Vogel-Polskypad",
         "building": "apartments",
